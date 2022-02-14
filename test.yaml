@@ -15,8 +15,8 @@ external_components:
       path : custom_components
 
 wifi:
-  ssid: "VEGG_5"
-  password: "sss3kk2aaaa4"
+  ssid: "your_ssid"
+  password: "your_password"
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
