@@ -1,0 +1,57 @@
+esphome:
+  name: test
+  libraries:
+    - "Wire"
+    - "Arduino"
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+external_components:
+  - source:
+      type : local
+      path : custom_components
+
+wifi:
+  ssid: "VEGG_5"
+  password: "sss3kk2aaaa4"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Test Fallback Hotspot"
+    password: "J7w9dNZ6pq3H"
+
+captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+binary_sensor:
+  - platform: pn7150
+    id: mypn7150
+    uid: AC-75-4E-95
+
+pn7150:
+  on_tag:
+    then:
+    - switch.turn_off:
+        id: led
+
+switch:
+  - platform: gpio
+    id : led
+    pin:
+      number: 5
+      inverted: true
+    on_turn_off:
+    - delay: 500ms
+    - switch.turn_on: led
+
+
+ota:
+  password: "12345"
